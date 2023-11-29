@@ -5,6 +5,7 @@ services:
       context: .
       args:
         - DEV=true
+    read_only: false
     ports:
       - "8000:8000"
     volumes:

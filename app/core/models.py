@@ -1,4 +1,3 @@
-from django.db import models  # noqa
 """
 Database models.
 """
@@ -14,10 +13,11 @@ from django.contrib.auth.models import (
 )
 
 
-def recipe_image_file_path(instance, file_name):
+def recipe_image_file_path(instance, filename):
     """Generate file path for new recipe image."""
-    ext = os.path.splitext(file_name)[1]
+    ext = os.path.splitext(filename)[1]
     filename = f'{uuid.uuid4()}{ext}'
+
     return os.path.join('uploads', 'recipe',  filename)
 
 

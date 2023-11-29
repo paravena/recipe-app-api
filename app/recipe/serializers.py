@@ -50,10 +50,10 @@ class RecipeSerializer(serializers.ModelSerializer):
     def _get_or_create_ingredients(self, ingredients, recipe):
         """Handle getting or creating ingredients as needed."""
         auth_user = self.context['request'].user
-        for ingredients in ingredients:
+        for ingredient in ingredients:
             ingredient_obj, created = Ingredient.objects.get_or_create(
                 user=auth_user,
-                **ingredients,
+                **ingredient,
             )
             recipe.ingredients.add(ingredient_obj)
 
@@ -91,7 +91,7 @@ class RecipeDetailSerializer(RecipeSerializer):
     """Serializer for recipe detail view."""
 
     class Meta(RecipeSerializer.Meta):
-        fields = RecipeSerializer.Meta.fields + ['description']
+        fields = RecipeSerializer.Meta.fields + ['description', 'image']
 
 
 class RecipeImageSerializer(serializers.ModelSerializer):

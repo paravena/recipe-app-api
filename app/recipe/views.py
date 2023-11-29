@@ -13,7 +13,8 @@ from rest_framework.permissions import IsAuthenticated
 
 from core.models import (
     Recipe,
-    Tag, Ingredient,
+    Tag,
+    Ingredient,
 )
 from recipe import serializers
 
@@ -44,7 +45,7 @@ class RecipeViewSet(viewsets.ModelViewSet):
 
     @action(methods=['POST'], detail=True, url_path='upload-image')
     def upload_image(self, request, pk=None):
-        """Upload image to recipe."""
+        """Upload an image to recipe."""
         recipe = self.get_object()
         serializer = self.get_serializer(recipe, data=request.data)
 
